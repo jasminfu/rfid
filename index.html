@@ -1,218 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload TXT and Send to Google Sheets</title>
+  <meta charset="UTF-8">
+  <title>Parts List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
-        /* Global Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f7fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #444;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-        }
-        h2 {
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 8px;
-            display: block;
-        }
-        input[type="file"], input[type="text"], button {
-            width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #f9f9f9;
-            transition: all 0.3s ease;
-        }
-        input[type="file"]:focus, input[type="text"]:focus {
-            border-color: #5c6bc0;
-            outline: none;
-            box-shadow: 0 0 6px rgba(92, 107, 192, 0.5);
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        button:active {
-            background-color: #004085;
-        }
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            text-decoration: none;
-            color: #007bff;
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: #0056b3;
-        }
-        .status-message {
-            text-align: center;
-            font-size: 16px;
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .message-success {
-            background-color: #e1f7e1;
-            color: #388e3c;
-        }
-        .message-error {
-            background-color: #f8d7da;
-            color: #d32f2f;
-        }
-        .message-info {
-            background-color: #e8f4fd;
-            color: #0288d1;
-        }
-        .message {
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #ffffff;
+      margin: 40px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      font-size: 15px;
+    }
+
+    thead th {
+      border-bottom: 2px solid #444;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+      background-color: #f7f7f7;
+    }
+
+    tbody td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    a {
+      color: #2c7fb8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Optional: subtle row hover like RStudio viewer */
+    tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    /* Keep it simple on mobile (no card conversion) */
+    @media (max-width: 600px) {
+      body {
+        margin: 20px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Upload Data File</h2>
-        <label for="fileInput">Select TXT File:</label>
-        <input type="file" id="fileInput" accept=".txt">
+  <div class="container">
+    <h1>Parts List</h1>
+    <p>Below outlines the list of parts.</p><p> <i>Need to purchase</i> takes into account our inventory, and indicates the suggested no. to buy to finish 15 feeders.</p><p>Some items come in packs, and only 1-2 packs needs to be purchased as indicated below.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Part Name</th>
+          <th>Function</th>
+          <th>Purchase Link</th>
+          <th>Quantity per feeder</th>
+          <th>Need to Purchase</th>
+          <th>Alternatives</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td data-label="Part Name">Adafruit Feather RP2040 Adalogger - 8MB Flash with microSD Card - STEMMA QT / Qwiic</td>
+          <td data-label="Function">Main controller for processing and logging data</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/5980" target="_blank">Adafruit</a>
+          </td>
+          <td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            0
+          </td>
+        </tr>
+
+        <tr>
+          <td data-label="Part Name">WL134 (RFID Module)</td>
+          <td data-label="Function">Reads 134.2khZ tags</td>
+          <td data-label="Purchase Link">
+            <a href="https://a.co/d/06jp2lGu
+" target="_blank">Amazon</a>
+          </td>
+          <td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            12
+          </td>
+        </tr>
+
+        <tr>
+          <td data-label="Part Name">MPM3610 5V Buck Converter Breakout - 21V In 5V Out at 1.2A</td>
+          <td data-label="Function">Provides 5V to the RFID module</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/4739" target="_blank">Adafruit</a><br><a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/4739/13175530
+" target="_blank">Digikey</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            13
+          </td>
+        </tr>
         
-        <label for="stationName">Station Name:</label>
-        <input type="text" id="stationName" placeholder="Enter the station name">
-
-        <button onclick="processFile()">Upload</button>
-
-        <div id="status" class="status-message"></div>
+        <tr>
+          <td data-label="Part Name">3A Mini DC-DC Buck Step Down Converter Board Module 5V-30V to 5V DC DC Voltage Regulator PCB Board Power Buck Module</td>
+          <td data-label="Function">Provides 5V to the RP2040</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B0DKTMGBHL?ref=cm_sw_r_cso_cp_apan_dp_81HRX42919WKRTYZG570" target="_blank">Amazon</a><br><a href="https://www.newegg.com/p/2VH-02HW-000E5
+" target="_blank">Newegg</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            13 <br>(i.e. 2 10-packs)
+          </td>
+        </tr>
         
-        <a href="https://docs.google.com/spreadsheets/d/1HzOukM2v5Jt4vPR1fuWoMnyXfR36FHlmp0iriwDzCco" target="_blank">View Google Sheet</a>
-    </div>
-
-    <script>
-        function showMessage(message, isError = false) {
-            const statusEl = document.getElementById('status');
-            statusEl.classList.remove('message-success', 'message-error', 'message-info');
-
-            if (isError) {
-                statusEl.classList.add('message-error');
-            } else {
-                statusEl.classList.add('message-success');
-            }
-
-            statusEl.innerText = message;
-            statusEl.classList.add('message');
-
-            // Clear message after 15 seconds
-            setTimeout(() => {
-                statusEl.innerText = "";
-                statusEl.classList.remove('message');
-            }, 15000);
-        }
-
-        function processFile() {
-            const fileInput = document.getElementById('fileInput');
-            const stationName = document.getElementById('stationName').value.trim();
-            const statusEl = document.getElementById('status');
-
-            statusEl.innerText = ""; // Clear previous messages immediately
-
-            if (!fileInput.files.length) {
-                showMessage("⚠️ Please select a file.", true);
-                return;
-            }
-            if (!stationName) {
-                showMessage("⚠️ Please enter a station name.", true);
-                return;
-            }
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(event) {
-                const lines = event.target.result.split('\n').filter(line => line.trim());
-                const records = lines.map(line => {
-                    try {
-                        return JSON.parse(line);
-                    } catch (e) {
-                        console.error("Invalid JSON line:", line);
-                        return null;
-                    }
-                }).filter(record => record);
-
-                if (records.length === 0) {
-                    showMessage("⚠️ No valid data found in file.", true);
-                    return;
-                }
-
-                showMessage("✅ File successfully parsed. Sending data...");
-
-                const payload = {
-                    data_type: "tags",
-                    stationName: stationName,
-                    records: records
-                };
-
-                fetch("https://script.google.com/macros/s/AKfycbwSGmFqF-1o5tBIWRAwuKcXvZTE-OWOY8vK17IPau3SSpgSGgGeWlvwgMGe04Rybm1OGQ/exec", {
-                    method: "POST",
-                    mode: "no-cors",  // Bypasses CORS
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                })
-                .then(() => {
-                    showMessage("✅ PLEASE VERIFY DATA HAS BEEN SENT");
-                })
-                .catch(error => {
-                    console.error("Fetch Error:", error);
-                    showMessage("❌ Error sending request.", true);
-                });
-            };
-
-            reader.readAsText(file);
-        }
-    </script>
+        <tr>
+          <td data-label="Part Name">DS3231 Precision RTC FeatherWing - RTC Add-on For Feather Boards</td>
+          <td data-label="Function">Keeps time for the RP2040</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/3028" target="_blank">Adafruit</a><br><a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/3028/5885910
+" target="_blank">Digikey</a><br><a href="https://www.newegg.com/p/3D0-000N-00098
+" target="_blank">Newegg</a><br><a href="https://www.walmart.com/ip/Adafruit-DS3231-Precision-RTC-FeatherWing/538634937
+" target="_blank">Walmart</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            13
+          </td>
+          </td>
+          <td data-label="Alternatives">
+            Use any other DS3231 RTC available on the market. You will need to solder it to the proto-board instead of stacking it with the OLED monitor.<br>If DS3231s are out of stock: DS1307, PCF8523, and PCF8563 can be used with a change in the code.
+          </td>
+        </tr>
+        
+        <tr>
+          <td data-label="Part Name">Adafruit FeatherWing OLED - 128x64 OLED Add-on For Feather - STEMMA QT / Qwiic</td>
+          <td data-label="Function">For checking device functionality</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/4650" target="_blank">Adafruit</a><br><a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/4650/13170952
+" target="_blank">Digikey</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            13
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">FeatherWing Tripler Mini Kit - Prototyping Add-on For Feathers</td>
+          <td data-label="Function">Connects RTC, OLED, WL134 and power components to each other</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/3417" target="_blank">Adafruit</a><br><a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/3417/6680554
+" target="_blank">Digikey</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            13
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">22AWG Solid Core Wire (silicone insulation recommended for beginners)</td>
+          <td data-label="Function">Makes connections between electrical components</td>
+          <td data-label="Purchase Link">
+            </td>
+<td data-label="Quantity per feeder">
+            a few pieces
+          </td>
+          <td data-label="Need to Purchase">
+            0
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">Stacking Headers for Feather - 12-pin and 16-pin female headers</td>
+          <td data-label="Function">Makes connections between the RTC and the OLED monitor</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/2830" target="_blank">Adafruit</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            0
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">Short Headers Kit for Feather - 12-pin + 16-pin Female Headers</td>
+          <td data-label="Function">Makes connections between the proto-board PCB and the feather tripler</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/2940" target="_blank">Adafruit</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            0
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">30mm x 70mm proto-board PCBs</td>
+          <td data-label="Function">Connects RFID module and 5V bucks to the RP2040 feather</td>
+          <td data-label="Purchase Link"><a href="https://www.adafruit.com/product/4784" target="_blank">Adafruit</a><br>
+            </td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            0
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">DR.PREPARE 12V 7Ah LiFePO4 Battery, Lithium Batteries 12v with 7A BMS, 4000+ Deep Cycle Lithium Iron Phosphate Rechargeable Battery</td>
+          <td data-label="Function">Powers the device</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B0DZ281Z3C?ref=cm_sw_r_cso_cp_apan_dp_LIGHTSABERNZBKNNUQ7O" target="_blank">Amazon</a><br><a href="https://www.walmart.com/ip/Dr-Prepare-12V-8Ah-Mini-LiFePO4-Battery-Built-in-BMS-4000-Cycles-10-Year-Lifetime-Fish-Finder-Radio-Power-Wheels-Scooters-UPS-Lighting-RV-Traveling/5392777825?wmlspartner=wlpa&selectedSellerId=101571076&selectedOfferId=3B5ECCDE8D3B3E3CB30EFDC72A94369C&conditionGroupCode=1
+" target="_blank">Walmart</a></td>
+<td data-label="Quantity per feeder">
+            2 (one for deploying, one for swapping out in the field)
+          </td>
+          <td data-label="Need to Purchase">
+            26
+          </td>
+        </tr>
+        
+        <tr>
+          <td data-label="Part Name">Mini Micro JST-XH 2.54mm Pitch 2 Pin Male Connector with 10cm Silicone Wire Cables and Female Socket</td>
+          <td data-label="Function">Connects the antenna to the RFID module</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B0D6KSMK1Q?ref=cm_sw_r_cso_cp_apan_dp_Y7WHNPQTM4YJDWZPAWNP" target="_blank">Amazon</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            12 (i.e. 1 pack of 20 sets)
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">(Real 18AWG) 12V 5A DC Power Pigtail Barrel Plug Connector Cable, 2.1mm x 5.5mm Male Female DC Pigtail Connectors</td>
+          <td data-label="Function">Connects the board to the battery</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B072BXB2Y8?ref=cm_sw_r_cso_cp_apan_dp_QJ3G2677Z98PH1GM2QK6" target="_blank">Amazon</a><br><a href="https://www.newegg.com/p/2BX-00KJ-001K6" target="_blank">Newegg</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            12 (i.e. 2 packs of 10 pairs)
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">Inline Fuse Holder Waterproof Automotive Replacement with ATC Blade Fuses for Car Truck Motorcycle Boat (16 Awg with 10 A)</td>
+          <td data-label="Function">Protects electrical circuit from excess current</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B0CG69411M?ref=cm_sw_r_cso_cp_apan_dp_J1YQP3NWRDBQPRGPYGJ0" target="_blank">Amazon</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            12 (i.e. 1 pack of 24 pieces)
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">5 Amp Standard Fuse, 5A Car Blade Fuses</td>
+          <td data-label="Function">Protects electrical circuit from excess current</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B0CS3VXFT3?ref=cm_sw_r_cso_cp_apan_dp_67AVSPX6GCCDEZR1HWGH" target="_blank">Amazon</a><br><a href="https://www.walmart.com/ip/25Pcs-5-Amp-Standard-Car-Fuses-5A-Automotive-Fuse-ATO-ATC-Blade-Fuse-for-Car-RV-Truck-SUV-Motorcycle-Boat/17459513441?wmlspartner=wlpa&selectedSellerId=102874203&selectedOfferId=5B0BCF006C9638E6A1159157F080EE9A&conditionGroupCode=1" target="_blank">Walmart</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            12 (i.e. 1 pack of 25 pieces)
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">AC/DC 14.4V/3A LiFePO4 Battery Charger with Dual Alligator Clips Connector for 4S 12V 12.8V Rechargeable Lithium Iron Phosphate Battery Pack</td>
+          <td data-label="Function">For charging 12V batteries</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B0DZNZ2RD7?ref=cm_sw_r_cso_cp_apan_dp_NNP5W1082Q9CCDZ87W7V" target="_blank">Amazon</a><br><a href="https://www.newegg.com/p/14R-0025-01052?item=9SIA1HSK753631" target="_blank">Newegg</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            1
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">Junction Box ABS Plastic Dustproof Waterproof IP65 Electrical Boxes Hinged Shell Outdoor Universal Project Enclosure 8.7 x 6.7 x 4.3 inch</td>
+          <td data-label="Function">For keeping electronics dry</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B08KWFYQQR?ref=cm_sw_r_cso_cp_apan_dp_ZPF8CHQ4VYAPH4RY2SX9" target="_blank">Amazon</a><br><a href="https://www.newegg.com/p/072-00XT-00006" target="_blank">Newegg</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Need to Purchase">
+            13
+          </td>
+          <td data-label="Alternatives">
+            Use any other size of waterproof project box that can fit the 12V battery and the electronic board.
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

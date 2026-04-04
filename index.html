@@ -293,6 +293,18 @@
           </td>
           <td data-label="Alternatives">Create your own mechanism</td>
         </tr>
+        <tr>
+          <td data-label="Part Name">Junction Box ABS Plastic Dustproof Waterproof IP65 Electrical Boxes Hinged Shell Outdoor Universal Project Enclosure 8.7 x 6.7 x 4.3 inch</td>
+          <td data-label="Function">For keeping electronics dry</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.amazon.com/dp/B08KWFYQQR?ref=cm_sw_r_cso_cp_apan_dp_ZPF8CHQ4VYAPH4RY2SX9" target="_blank">Amazon</a><br><a href="https://www.newegg.com/p/072-00XT-00006" target="_blank">Newegg</a></td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Alternatives">
+            Use any other size of waterproof project box that can fit the 12V battery and the electronic board.
+          </td>
+        </tr>
       </tbody>
     </table>
     <h1>Tools Required</h1>
@@ -474,6 +486,42 @@ float endSleepTime = 5.5;      // 5:30 AM, MODIFY TO CHANGE WAKE TIME</code></pr
     <li>Press the reset button or force <a href="https://learn.adafruit.com/adafruit-feather-rp2040-with-usb-type-a-host/factory-reset-2">bootloader mode</a>. (This may also fix serial port errors)</li></ul></li>
 </ul>
 <p>If you have any other issues, internet resources such as the <a href="https://forums.adafruit.com/">Adafruit Forum</a> and <a href="https://forum.arduino.cc/">Arduino Forum</a> are great places to get answers.</p>
+<h1>Testing your device</h1>
+<p>After you have done all of the steps above, you are ready to test the device.</p>
+<h2>Power the tripler</h2>
+<p><b>If you have just flashed code, unplug the Adalogger from your computer.</b> Plugging in your device to the 12V battery and your computer simultaneously could damage your computer.</p>
+<p>Plug the male DC connector on your board into the female DC connector of the battery.</p>
+<p>If the device starts smoking or smelling funny, unplug the battery immediately and re-examine the connections on the board, preferably with a continuity tester.</p>
+<ul><li>Wires may not be soldered to the appropriate pins</li>
+<li>Wires on the board may have broken (solid core wire will break after a few bends).</li></ul>
+<h2>Verify your components are functioning</h2>
+<ol><li>Insert an SD card into the SD card slot of the Adalogger.</li>
+<li>Insert a battery into your RTC. If using the DS3231 Featherwing RTC, the battery is CR1220.</li>
+<li><b>Test the OLED monitor. </b><ul><li>Press button A to turn on the monitor. Examine the text.</li><li>Press button B to switch screens on the OLED monitor. Examine the RTC time.</li>
+<li>Press button C to turn the monitor off.</li></ul></li>
+<li><b>Test the WL-134 RFID Module.</b> Touch a 134.2kHz FDX-B tag to the antenna. Look for a blue light flash on the WL-134 everytime you scan a tag.</li>
+<li><b>Test the power saving mechanism.</b> Attempt to scan a PIT tag during the sleep time. The OLED monitor buttons and the WL-134 should be unresponsive.</li>
+<li><b>Test the waking mechanism of the RTC.</b> Attempt to scan a PIT tag after the device has slept. The OLED monitor buttons and the WL-134 should be responsive.</li></ol>
+<h2>Troubleshoot any non-functional components</h2>
+<p>Before reading the sections below, verify that all of your pins are inserted properly into the female headers (no extra prongs on the PCB boards are sticking out).</p>
+<p><b><u>Potential Issues and Possible Solutions:</u></b></p>
+<h3>OLED is not turning on</h3>
+<ul><li>Check that your battery is charged.</li>
+<li>Check that the battery is connected well to Tripler board.</li>
+<li>Check the wired connections on 5V buck for the RP2040. Test continuity between the buck and the header pins on the RP2040. Solder and wire should have good contact with the buck's pads, otherwise the RP2040 may be undervolted. Reflow solder, reinforce connections or replace wires if needed.</li></ul>
+<h3>RFID module is not flashing blue when I read a tag</h3>
+<ul><li>Check the wired connections on 5V buck for the WL-134. Test continuity between the buck and the header pins on the WL-134. Solder and wire should have good contact with the buck's pads, otherwise the RFID module may be undervolted. Reflow solder, reinforce connections or replace wires if needed.</li>
+<li>Check placement of wire and continuity between RP2040's RX and WL-134's 3v3TX pin.</li>
+<li>Check placement of wire and continuity between RP2040's pin 12 and WL-134's + pin.</li></ul>
+<h3>RTC time is wrong</h3>
+<ul><li>Re-upload the code to the device via the Arduino IDE.</li></ul>
+<h3>Device isn't waking up</h3>
+<ul><li>Ensure you connected the SQW pin on the RTC to pin 25.</li>
+<li>Reflow or reinforce the soldered bridge on pin 25 and the wire to the SQW pin</li></ul>
+<h3>Device can't detect the SD card</h3>
+<ul><li>Ensure your SD card is fully plugged into the card slot and in the correct direction.</li>
+<li>Ensure your SD card is 32GB or below.</li>
+<li>Ensure your SD card is FAT-32 formatted.</li></ul>
     </div>
     <div class="page" id="pvc-feeder"style="display:none;"><h1>Feeder Enclosure Parts List</h1>
     <p>Below outlines the list of parts for building the PVC tube feeder.</p>

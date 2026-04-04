@@ -2,79 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Parts List</title>
+  <title>RFID Bird Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #ffffff;
-      margin: 40px;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    h1 {
-      font-weight: normal;
-      margin-bottom: 20px;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 900px;
-      font-size: 15px;
-    }
-
-    thead th {
-      border-bottom: 2px solid #444;
-      padding: 8px 10px;
-      text-align: left;
-      font-weight: 600;
-      background-color: #f7f7f7;
-    }
-
-    tbody td {
-      border-bottom: 1px solid #ddd;
-      padding: 8px 10px;
-      vertical-align: top;
-    }
-
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    a {
-      color: #2c7fb8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Optional: subtle row hover like RStudio viewer */
-    tbody tr:hover {
-      background-color: #f9f9f9;
-    }
-
-    /* Keep it simple on mobile (no card conversion) */
-    @media (max-width: 600px) {
-      body {
-        margin: 20px;
-      }
-
-      table {
-        font-size: 14px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <nav id="sidebar">
+  </nav>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Parts List</h1>
-    <p>Below outlines the list of parts.</p><p> <i>Need to purchase</i> takes into account our inventory, and indicates the suggested no. to buy to finish 15 feeders.</p><p>Some items come in packs, and only 1-2 packs needs to be purchased as indicated below.</p>
+  <main id="content-area">
+  <div id="home" class="page">
+    <h1>Introduction</h1>
+    <p>The purpose of this page is to detail the process for building RFID devices for ecological research.</p>
+    <div class="page-link" onclick="openPage('wl134')">WL-134 RFID Logger</div>
+    <div class="page-link" onclick="openPage('pvc-feeder')">PVC Tube Feeder</div></div>
+    <div class="page" id="wl134" style="display:none;">
+      
+      <h1>Introduction</h1>
+      <p>This page describes how to make a device that reads 134.2khZ PIT tags and records them into a csv file with the corresponding time it was recorded. It can be used for animal tracking and research.</p>
+      <h2>Is this project for me?</h2>
+      <h3>I don't have electronics experience. Is that okay?</h3>
+      <p>This project is recommended for non-electrical/technical people with a strong DIY spirit to develop their electrical engineering knowledge. We use a lot of Adafruit products, which are beginner-friendly but still require some technical knowledge (which we will explain below). You may need to invest in some materials and equipment to successfully complete this project (outlined in 'Tools Required' section).</p>
+      <h3>I don't have time to learn all of this.</h3>
+      <p>We recommend exploring ready-to-use market options, such as <a href="https://www.priority1design.com.au/animal_tag_rfid_reader.html">Priority One Design</a> and <a href="https://www.biomark.com/rfid-pit-tag-readers/">Biomark</a>.</p>
+      <h3>Are there any alternative instructions?</h3>
+      <p>Dr. Eli Bridge has <a href="http://www.animalmigration.org/RFID/RFIDbuild.htm">instructions for building the RFIDLog</a>, a device that logs 134.2khZ tags as well, and works in a much more energy efficient way. However, you will need to print your own customized PCB and make your own antenna (whereas our project works with products directly available on the market, and uses a factory antenna, so you do not need to make your own).</p>
+      <h3>Do I have the right PIT tags for this?</h3>
+      <p>This project is for reading ISO FDX-B 134.2khZ PIT tags, the same kind of tags found in your household pets.</p> <p>If you are studying wild animals, you need to acquire these tags, acquire the relevant permits, and find a reliable and safe way to attach these tags to the animals. For example, presently, no bird leg bands with 134.2kHz PIT tags are readily available on the market, so you need to <a href="http://www.animalmigration.org/RFID/RFIDBands.htm">make your own</a>.</p>
+      <h3>Is this the right frequency for me?</h3>
+      <p>PIT tags also come in 125kHz, with electrical components that are cheaper and easier to source because they are widely used by hobbyists. Using 125kHz RFID readers simplifies wiring for a DIY electronics project, because they have lower voltage requirements compared to 134.2kHz RFID readers. 125kHz tags and readers also have similar performance to those of 134.2kHz. If studying birds, leg bands with 125kHz PIT tags <i>are</i> available for sale by <a href="https://eccel.co.uk/product-category/avian-products/bird-tags/">Eccel Technologies</a>.</p>
+      
+    
+    <h1>Electronic Parts List</h1>
+    <p>Below outlines the list of parts for the electronics.</p><p>Some items come in packs, so purchase your parts according to how many you need.</p><p>Purchase links are not affiliate/sponsored links.</p>
 
     <table>
       <thead>
@@ -83,7 +43,6 @@
           <th>Function</th>
           <th>Purchase Link</th>
           <th>Quantity per feeder</th>
-          <th>Need to Purchase</th>
           <th>Alternatives</th>
         </tr>
       </thead>
@@ -98,9 +57,6 @@
           <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            0
-          </td>
         </tr>
 
         <tr>
@@ -114,9 +70,6 @@
           <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            12
-          </td>
         </tr>
 
         <tr>
@@ -128,9 +81,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            13
-          </td>
         </tr>
         
         <tr>
@@ -141,9 +91,6 @@
 " target="_blank">Newegg</a></td>
 <td data-label="Quantity per feeder">
             1
-          </td>
-          <td data-label="Need to Purchase">
-            13 <br>(i.e. 2 10-packs)
           </td>
           <td data-label="Alternatives">
             MPM3610 5V Buck Converter (above) essentially provides the same function, but this device is cheaper.
@@ -161,9 +108,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            13
-          </td>
         
           <td data-label="Alternatives">
             Use any other DS3231 RTC available on the market. You will need to solder it to the proto-board instead of stacking it with the OLED monitor.<br>If DS3231s are out of stock: DS1307, PCF8523, and PCF8563 can be used with a change in the code.
@@ -179,9 +123,7 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            13
-          </td>
+
           <td data-label="Alternatives">
             Any other OLED 128x64 monitor with an SH1107 driver will work with the current code, but with added complexity, as the OLED monitor will need to be soldered onto the proto-board PCB.
           </td>
@@ -195,9 +137,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            13
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">22AWG Solid Core Wire (silicone insulation recommended for beginners)</td>
@@ -207,8 +146,20 @@
 <td data-label="Quantity per feeder">
             a few pieces
           </td>
-          <td data-label="Need to Purchase">
-            0
+          <td data-label="Alternatives">
+            You will find solid core wire with PVC insulation (e.g. from Adafruit). However, silicone insulation is recommended for people who do not solder regularly, as PVC insulation melts very easily.
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">Lead-Free Solder Wire Rosin Core Flux Electric Solder</td>
+          <td data-label="Function">Creates connections between wires, pins and boards</td>
+          <td data-label="Purchase Link"><a href="https://www.adafruit.com/product/1930" target="_blank">Adafruit</a><br><a href="https://www.newegg.com/p/0J6-00Z1-00039" target="_blank">Newegg</a>
+            </td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+          <td data-label="Alternatives">
+            Lots of difference places sell lead-free solder. You may also use solder with lead, but beware that the lead residue and fumes are a health hazard.
           </td>
         </tr>
         <tr>
@@ -219,9 +170,6 @@
 <td data-label="Quantity per feeder">
             a piece
           </td>
-          <td data-label="Need to Purchase">
-            1
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">Stacking Headers for Feather - 12-pin and 16-pin female headers</td>
@@ -231,8 +179,14 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            0
+        </tr>
+        <tr>
+          <td data-label="Part Name">Female headers</td>
+          <td data-label="Function">Makes connections between the RFID module and the perf board.</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.adafruit.com/product/598" target="_blank">Adafruit</a></td>
+<td data-label="Quantity per feeder">
+            1
           </td>
         </tr>
         
@@ -244,9 +198,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            0
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">DR.PREPARE 12V 7Ah LiFePO4 Battery, Lithium Batteries 12v with 7A BMS, 4000+ Deep Cycle Lithium Iron Phosphate Rechargeable Battery</td>
@@ -256,9 +207,6 @@
 " target="_blank">Walmart</a></td>
 <td data-label="Quantity per feeder">
             2 (one for deploying, one for swapping out in the field)
-          </td>
-          <td data-label="Need to Purchase">
-            26
           </td>
         </tr>
         
@@ -270,9 +218,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            1
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">(Real 18AWG) 12V 5A DC Power Pigtail Barrel Plug Connector Cable, 2.1mm x 5.5mm Male Female DC Pigtail Connectors</td>
@@ -281,9 +226,6 @@
             <a href="https://www.amazon.com/dp/B072BXB2Y8?ref=cm_sw_r_cso_cp_apan_dp_QJ3G2677Z98PH1GM2QK6" target="_blank">Amazon</a><br><a href="https://www.newegg.com/p/2BX-00KJ-001K6" target="_blank">Newegg</a></td>
 <td data-label="Quantity per feeder">
             1
-          </td>
-          <td data-label="Need to Purchase">
-            13 (i.e. 2 packs of 10 pairs)
           </td>
         </tr>
         <tr>
@@ -294,9 +236,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            12 (i.e. 1 pack of 24 pieces)
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">5 Amp Standard Fuse, 5A Car Blade Fuses</td>
@@ -306,8 +245,33 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            12 (i.e. 1 pack of 25 pieces)
+        </tr>
+        
+        <tr>
+          <td data-label="Part Name">CR1220 Battery</td>
+          <td data-label="Function">Powers the real time clock (RTC)</td>
+          <td data-label="Purchase Link">
+            </td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+
+          <td data-label="Alternatives">
+            If you use an RTC different from the DS3231 Featherwing, adjust your battery accordingly.
+          </td>
+        </tr>
+        <tr>
+          <td data-label="Part Name">8 to 32GB microSD Card</td>
+          <td data-label="Function">Stores data</td>
+          <td data-label="Purchase Link">
+            <a href="https://www.sandisk.com/product-portfolio/memory-cards/microsd-cards?filterByCapacityValues=8%20GB%2C16%20GB%2C32%20GB" target="_blank">Sandisk</a>
+            </td>
+<td data-label="Quantity per feeder">
+            1
+          </td>
+
+          <td data-label="Alternatives">
+            We recommend a reliable brand, but you may use any other FAT-32 formatted 8GB to 32GB microSD card. The microcontroller will <u>not</u> work with SD cards of bigger sizes and higher GB. 
           </td>
         </tr>
         <tr>
@@ -318,10 +282,211 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
+        </tr>
+        <tr>
+          <td data-label="Part Name">USB-C Dust Plug (recommended)</td>
+          <td data-label="Function">To prevent people from plugging the RP2040 into a computer without disconnecting the battery first</td>
+          <td data-label="Purchase Link">
+            </td>
+<td data-label="Quantity per feeder">
             1
           </td>
+          <td data-label="Alternatives">Create your own mechanism</td>
         </tr>
+      </tbody>
+    </table>
+    <h1>Tools Required</h1>
+    <p>We recommend the following for a successful build:</p>
+    <ul>
+  <li><b>Soldering Iron</b> with a bevel tip, at least 60W and adjustable temperature control</li>
+  <li><b>Solder tip tinner</b> to clean soldering iron</li>
+  <li><b>Wire cutters</b></li>
+  <li><b>Wire strippers</b> able to work with 22 AWG wire</li>
+  <li><b>Crimping Tool</b> able to work with 22 AWG wire</li>
+  <li><b>Well-ventilated area</b> for soldering</li>
+  <li><b>Heat-proof silicone mat</b> or other surface for soldering</li><li><b>Computer</b> able to download the Arduino IDE for flashing code</li>
+  <li><b>USB-C Cable</b> with data transfer that can plug into your device</li>
+  <li><b>Continuity Tester</b> to troubleshoot soldered connections</li>
+</ul>
+<h1>Electronics Assembly</h1>
+<p>If you have never soldered before, we recommend watching some <a href="https://www.youtube.com/watch?v=DJH7VLGJ4fs">YouTube videos</a> to familiarize yourself with the process. The instructions for board assembly also progress from easy to moderately hard, and provide a great introduction to people who have never worked with electronic components before.</p>
+<p>Below details the steps to assemble the electronics. Though the videos below look the same, there are unique start and end time stamps for each player, so you can play the content for the corresponding section.</p>
+<h2>Assemble the boards</h2>
+<h3>Assemble the Featherwing Tripler Mini-kit</h3>
+<ol>
+  <li>Arrange 12 and 16 female header pins <a href="https://www.adafruit.com/product/3417">as pictured</a>.<ul>The 12 pin header will go on the side with the letters 'SDA' and 'SCL'.</ul>
+  <ul>The 16 pin header will go on the other side.</ul></li>
+  <li>Solder all header pins onto the Featherwing Tripler.</li></ol>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1&end=404" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder male header pins onto the RP2040 Microcontroller</h3>
+<ol>
+  <li>Arrange the 12 pin and 16 male header pins on the RP2040 with the long side of the header pins on the side where there is no SD card slot.</li>
+  <li>Solder all header pins onto the RP2040.</li>
+  <li>Fit RP2040 onto the tripler board.</li></ol>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=405&end=566" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder male header pins onto the OLED</h3>
+<p>This is the same process as soldering male header pins on the RP2040 microcontroller. Your component may come pre-soldered, so you may skip this step depending on your needs.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=567&end=615" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder stacking header pins onto the RTC Featherwing</h3>
+<ol>
+  <li>Arrange stacking header pins on the RTC Featherwing. The side with the plastic female headers should be on the same side as the battery slot.</li>
+  <li>Solder all header pins onto the RTC.</li></ol>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=615&end=791" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder SQW pin to GPIO 25 of the RP2040</h3>
+<ol>
+  <li>Strip a small bit of insulation off of your solid core wire.</li>
+  <li>Insert the end of that wire into the SQW hole of the RTC.</li>
+  <li>Measure the path and how much length the wire needs to reach pin 25's hole (7th hole up on the 16 pin side).</li>
+  <li>Cut the wire to a bit more than the length measured in the previous step, then strip off the excess insulation.</li>
+  <li>Solder wire to the board.</li>
+  <li>Solder bridge between the wire at pin 25 and the header pin.</li>
+  </ol>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=792&end=1112" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Stack Adafruit devices together</h3>
+<ol><li>Insert RTC male headers into a slot in the tripler.</li>
+<li>Stack OLED on top of the RTC by inserting the OLED's male headers into the female headers of the RTC.</li></ol>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1112&end=1171" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder header and JST pins onto the RFID module (WL-134)</h3>
+<ol><li>Insert male headers into the +, -, TX and RST holes of the WL-134 (total of 6 male headers).</li>
+<li>Solder male headers into the holes.</li>
+<li>Insert a 2 pin JST connector into the ANT1 and ANT2 holes.</li>
+<li>Solder the JST connector into the holes.</li></ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1174&end=1339" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder female header pins on the proto-board PCB (perf board)</h3>
+<ol><li>Solder 12 male header pins on the right end of a 30mm x 70mm proto-board (Select the side with a shorter distance from the last row of holes to the edge of the board to be your right end).</li>
+<li>Align your 16 male header pins on the left end of a 30mm x 70mm proto-board, leaving a 7 hole gap between the left and right header pins. You can use the tripler or Adafruit RP2040 or OLED monitor to figure out the spacing of your header pins.</li>
+<li>Once you are confident of your 16 pin headers' placement, solder in the headers.</li></ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1340&end=1605" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Solder female headers for WL-134</h3>
+<ol><li>Gather 2 sets of 3 pin female headers.</li>
+<li>Decide where to put your WL-134 on your proto-board PCB. Make sure there will be no obstacles impeding the WL-134 when you snap this component onto the board.</li>
+<li>Place female headers onto the holes of your proto-board where you want your WL-134 to live.</li>
+<li>Once you are confident with your placement, solder the female headers onto the board.</li></ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1605&end=1775" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Prepare male DC connectors</h3>
+<ol><li>Twist the ends of the stranded wire on the male DC connector</li>
+</ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1775&end=1810" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Bridge the 5V pads on the back with solder if using 3A Mini Buck Converter</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=2152&end=2213" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Make connections between the DC connector wires and your 5V bucks</h3>
+<ol><li>Solder the DC connector wires onto the proto-board PCB.</li>
+<li>Solder the DC connector wires onto the proto-board PCB.</li>
+<li>Solder the red wire to the 'IN +' or 'Vin' of your bucks.</li>
+<li>Solder the black wire to the 'IN -' or 'GND' of your bucks.</li>
+<li>Check soldered connections have continuity (visually is fine, but with a continuity tester is better).</li></ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=2215&end=2690" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p>Watch the following for an explanation on the 5V bucks (especially relevant if using 2 MPM3610 bucks):</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=1811&end=2151" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<h3>Make wire connections between your bucks and RFID module to the RP2040</h3>
+<ol>
+<li>Set up solid core wires to make connections. (similar to how you connected the SQW pin of the RTC to one of the male header pins). The Adafruit website provides the  <a href="https://learn.adafruit.com/adafruit-feather-rp2040-adalogger/pinouts">pin mapping</a> for the RP2040 Adalogger.
+<ul>If making connections to the RP2040 Adalogger, just wire the connections from your bucks and RFID modules to the corresponding pin position on your proto-board. No need to wire things all the way to the original board (this is the beauty of the tripler).</ul></li> 
+<li>Make the following connections:
+<ul><li>5V pin of your RP2040 buck (3A Mini or MPM3610) to USB pin of RP2040 Adalogger</li>
+<li>GND pin of your RP2040 buck (3A Mini or MPM3610) to GND pin of RP2040 Adalogger</li>
+<li>5V pin of your RFID buck (MPM3610) to WL-134's + (positive) pin</li>
+<li>GND pin of your RFID buck (MPM3610) to WL-134's - (negative) pin</li>
+<li>EN pin of your RFID buck (MPM3610) to pin 12 of RP2040 Adalogger</li>
+<li>3v3Tx pin of your WL-134 to RX pin of RP2040 Adalogger (<u>NOT</u> 5V TX pin)</li></ul></li><li>After all wires are set up, double check your connections.</li>
+<li>Solder connections between wires, boards and header pins.</li>
+<li>Snip off excess wire if desired</li>
+<li>Test connections with a continuity tester.</li>
+</ol>
+<p>Below is a summary of all the connections you will make in this step:</p>
+<center><img src="mapping.png" style="width:560px; height: auto;"></center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=2690&end=3447" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h3>Secure your PCB onto the tripler</h3>
+<ol><li>Plug in WL-134 onto your proto-board/PCB.</li>
+<li>Plug in proto-board onto last slot of your tripler</li>
+</ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=3448" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<h2>Antenna and attachment to project box</h2>
+<h3>Solder factory antenna onto parallel wires</h3>
+<h3>Solder parallel wires onto aviation connector</h3>
+<h3>Drill hole into project box</h3>
+<h3>Attach the aviation connector into the project box</h3>
+<h3>Plug in male JST connector to female JST connector on the WL-134</h3>
+<h2>The battery</h2>
+<h3></h3>
+<h1>Code for RP2040 Data Logger</h1>
+<p>We will upload a code to the RP2040 Adalogger to tell it to log RFID data.</p>
+<h2>Set up the Arduino IDE</h2>
+<p>Please follow <a href="https://learn.adafruit.com/adafruit-feather-rp2040-adalogger/arduino">these steps</a> to set up the Arduino IDE on your computer to work with the RP2040 Adalogger.</p>
+<h2>Install libraries</h2>
+    <p>Here are <a href="https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries/">instructions</a> on how to install libraries in the Arduino IDE. Please install the following libraries.</p><ul><li>SdFat</li><li>RTCLib</li><li>Adafruit_GFX</li><li>Adafruit_SH110X</li></ul>
+    <h2>Review code</h2>
+    <p>Please download <a href="https://github.com/jasminfu/rfid/blob/main/rp2040_wl134.ino">this code</a> on Github, and open it with the Arduino IDE. Make the following changes to your code depending on your needs. You may use Ctrl+F or Cmd+F on the Arduino IDE to find the exact lines of code mentioned below.</p>
+    <h3>Device ID</h3>
+    <p>To keep track of which device logged what, you may (and should?) change your device ID with a unique number or name each time you flash a microcontroller. Edit the text in between the double parentheses.</p>
+    <pre>
+  <code>
+    const char* deviceID = "01"; // MODIFY THIS FOR EACH DEVICE
+  </code>
+</pre>
+<p>We do not recommend excessively long device IDs (over 8 characters), because it may create issues with creating files on the SD card.</p>
+<p>We recommend labeling each RP2040 device with a sticker after code is uploaded to keep track of your device IDs.</p>
+<h3>List of Check Tags</h3>
+<p>We have programmed the OLED monitor to turn on when a scanned tag matches the ID in the list of check tags. We did not want all tags to turn on the OLED monitor to save battery power.</p>
+<p>This feature is nice to check device functionality, but you can omit this step if needed.</p><p>You can simply test whether the RFID module is working by looking out for a blue light flash when a tag is scanned, and you can turn on the OLED monitor by pressing button A.</p>
+<p>However, if you would like the 'Check Tag' functionality, please modify the tag IDs in the following lines of code. Ensure each tag ID is between double parentheses, and that there is a comma separating each ID.</p>
+<pre>
+  <code>// MODIFY THIS LIST WITH YOUR CHECK TAG IDs
+const char* checkTags[] = {
+  "1175348100",
+  "6968D395D1",
+  "6475348100"
+};
+  </code>
+</pre>
+
+  <h3>Wake/Sleep Times</h3>
+  <p>You may choose to have dynamic or static sleep times.</p>
+  <p>If you choose to use dynamic sleep times, please change the time zone, latitude and longitude coordinates to fit your location. Remember that locations to the west of the Prime Meridian have negative longitude.</p>
+  <pre>
+  <code>
+const float LATITUDE = 33.9423;    // CHANGE THIS TO YOUR LOCATION's LATITUDE
+const float LONGITUDE = -83.3724;  // CHANGE THIS TO YOUR LOCATION's LONGITUDE
+const int TIMEZONE = -4;           // CHANGE THIS TO REFLECT YOUR TIME ZONE
+  </code>
+</pre>
+<p>If you choose to use static sleep times, please modify startSleepTime and endSleepTime variables according to your desired sleep and wake times.</p>
+<pre><code>// Default sleep times. startSleepTime should be bigger than endSleepTime
+float startSleepTime = 21.75;  // 9:45 PM, MODIFY TO CHANGE SLEEP TIME
+float endSleepTime = 5.5;      // 5:30 AM, MODIFY TO CHANGE WAKE TIME</code></pre>
+<p>Additionally, please replace <b>true</b> with <b>false</b> in this line.</p>
+<pre><code>const bool dynamicSleep = true;    // SET THIS TO false IF YOU WANT STATIC SLEEP AND WAKE TIMES</code></pre>
+<h2>Upload Code (sketch) onto the RP2040</h2>
+<p>Follow the <a href="https://learn.adafruit.com/ladyadas-learn-arduino-lesson-number-1/upload-your-first-sketch">instructions</a> on uploading code onto an RP2040 Adalogger. Instead of the 'Blink' sketch however, you will be uploading <a href="https://github.com/jasminfu/rfid/blob/main/rp2040_wl134.ino">this code</a> you downloaded in the previous step.</p>
+<p>If the code was successfully uploaded, you will see an output like <i>"Wrote ____ bytes in _____ seconds."</i></p>
+<h2>Troubleshooting Code</h2>
+<p>Here are the most common problems I encountered as a newbie while working with the RP2040 code.</p>
+<ul>
+  <li><b>Can't see the board on my dropdown!</b>
+  <ul><li>Try another cable. Make sure it is capable of data transfer.</li><li>Try another USB port</li><li>Force it into <a href="https://learn.adafruit.com/adafruit-feather-rp2040-with-usb-type-a-host/factory-reset-2">bootloader mode</a>, or press the 'RESET' button. Something like 'RPI-RP2' should appear in the dropdown menu. Choose that and try to upload again.</li></ul>
+  </li>
+  <li><b>There's errors in the code!</b><ul><li>Make sure you have downloaded all the required libraries</li>
+  <li>If you added or deleted things from the code, start over from the original code. Make sure that your edits did not delete or add an extra semicolon, parenthesis, curly bracket or comma by accident.</li>
+  </ul></li>
+  <li><b>The code failed to upload!</b><ul>
+    <li>Make sure you chose the correct board in the dropdown menu. It should say 'Adafruit Feather RP2040 Adalogger', and it should be in <b>bold</b>.</li>
+    <li>Press the reset button or force <a href="https://learn.adafruit.com/adafruit-feather-rp2040-with-usb-type-a-host/factory-reset-2">bootloader mode</a>. (This may also fix serial port errors)</li></ul></li>
+</ul>
+<p>If you have any other issues, internet resources such as the <a href="https://forums.adafruit.com/">Adafruit Forum</a> and <a href="https://forum.arduino.cc/">Arduino Forum</a> are great places to get answers.</p>
+    </div>
+    <div class="page" id="pvc-feeder"style="display:none;"><h1>Feeder Enclosure Parts List</h1>
+    <p>Below outlines the list of parts for building the PVC tube feeder.</p>
+    <table><thead>
+        <tr>
+          <th>Part Name</th>
+          <th>Function</th>
+          <th>Purchase Link</th>
+          <th>Quantity per feeder</th>
+          <th>Alternatives</th>
+        </tr>
+      </thead><tbody>
+
         <tr>
           <td data-label="Part Name">Junction Box ABS Plastic Dustproof Waterproof IP65 Electrical Boxes Hinged Shell Outdoor Universal Project Enclosure 8.7 x 6.7 x 4.3 inch</td>
           <td data-label="Function">For keeping electronics dry</td>
@@ -330,38 +495,8 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            13
-          </td>
           <td data-label="Alternatives">
             Use any other size of waterproof project box that can fit the 12V battery and the electronic board.
-          </td>
-        </tr>
-        <tr>
-          <td data-label="Part Name">GX12 Aviation Connector with Plug Cover</td>
-          <td data-label="Function">Provide waterproof connection from antenna to project box</td>
-          <td data-label="Purchase Link">
-            <a href="https://www.walmart.com/ip/Uxcell-12mm-2-Terminals-5A-300V-GX12-Aviation-Connector-with-Plug-Cover-2-Set/376545751" target="_blank">Walmart</a></td>
-<td data-label="Quantity per feeder">
-            1
-          </td>
-          <td data-label="Need to Purchase">
-            12 (6 2-packs)
-          </td>
-        </tr>
-        <tr>
-          <td data-label="Part Name">Braided Sleeving Heat Shrinkable Fabric 2:1 Ratio- Abrasion Protection Flexibility Wiring Harness Cable Sheath (3/8" ID, 16ft)</td>
-          <td data-label="Function">Protects antenna wire</td>
-          <td data-label="Purchase Link">
-             <a href="https://a.co/d/02iTkjUf" target="_blank">Amazon</a><br>
-            <a href="https://www.walmart.com/ip/Heat-Shrinkable-Braided-Sleeving-2-1-Ratio-Abrasion-Protection-Flexibility-Wiring-Harness-Cable-Sheath/1005355492" target="_blank">Walmart</a><br>
-             <a href="https://www.newegg.com/p/3C6-02X3-028B1" target="_blank">Newegg</a>
-            </td>
-<td data-label="Quantity per feeder">
-            1
-          </td>
-          <td data-label="Need to Purchase">
-            1
           </td>
         </tr>
         <tr>
@@ -373,20 +508,14 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            0
-          </td>
         </tr>
         <tr>
-          <td data-label="Part Name">Cedar Fence Picket</td>
+          <td data-label="Part Name">Wooden Fence Picket</td>
           <td data-label="Function">Mounts feeder to pole and stake</td>
-          <td data-label="Purchase Link"><a href="https://www.homedepot.com/p/Outdoor-Essentials-19-32-in-D-x-5-1-2-in-W-x-6-ft-H-Cedar-Dog-Ear-Fence-Picket-327357/314521365" target="_blank">Home Depot</a>
+          <td data-label="Purchase Link"><a href="https://www.homedepot.com/p/5-8-in-x-5-1-2-in-x-6-ft-Pressure-Treated-Pine-Dog-Ear-Fence-Picket-102560/202319053" target="_blank">Home Depot</a>
             </td>
 <td data-label="Quantity per feeder">
             1/2
-          </td>
-          <td data-label="Need to Purchase">
-            6
           </td>
           <td data-label="Alternatives">
             Cedar is more durable and may last a few more seasons, but pine is cheaper.
@@ -400,11 +529,7 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            13
-          </td>
         </tr>
-        
         <tr>
           <td data-label="Part Name">Pole</td>
           <td data-label="Function">Elevates feeder from the ground</td>
@@ -413,23 +538,14 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            ?
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">Piano Hinges</td>
           <td data-label="Function">Provides cover for seed reservoir and to open and close feeder</td>
           <td data-label="Purchase Link">
-            <a href="https://www.amazon.com/dp/B0FX24HBS8?ref=cm_sw_r_cso_cp_apan_dp_GMCT702A7GA4MWPY2XBN&social_share=cm_sw_r_cso_cp_apan_dp_GMCT702A7GA4MWPY2XBN&th=1" target="_blank">Amazon</a><br>
-            <a href="https://www.walmart.com/ip/Uxcell-2-Pack-Black-Continuous-Piano-Hinges-4x1-2x0-04-304-Stainless-Steel-with-Screws-for-Cabinets-Door/15951857083?wmlspartner=wlpa&selectedSellerId=571&selectedOfferId=97CAD4E3500C3EF6A105F1109345C98A&conditionGroupCode=1" target="_blank">Walmart</a><br>
-            <a href="https://www.acehardware.com/departments/hardware/door-hardware/door-hinges/5002007?x429=true&utm_source=google&utm_medium=organic-shopping&utm_campaign=organic-shopping" target="_blank">Ace Hardware</a>
             </td>
 <td data-label="Quantity per feeder">
             1
-          </td>
-          <td data-label="Need to Purchase">
-            13
           </td>
         </tr>
         <tr>
@@ -440,9 +556,6 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            ?
-          </td>
         </tr>
         <tr>
           <td data-label="Part Name">Velcro</td>
@@ -451,9 +564,6 @@
             </td>
 <td data-label="Quantity per feeder">
             1
-          </td>
-          <td data-label="Need to Purchase">
-            ?
           </td>
         </tr>
         <tr>
@@ -464,13 +574,9 @@
 <td data-label="Quantity per feeder">
             1
           </td>
-          <td data-label="Need to Purchase">
-            ?
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
-  </div>
+        </tr></tbody></table></div>
+        </main>
+  
 </body>
 </html>
+<script src="script.js"></script>

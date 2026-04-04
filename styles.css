@@ -1,67 +1,56 @@
-
 body {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size:12px;
-      background-color: #ffffff;
-      margin: 40px;
-      color: #333;
-      line-height: 1.6;
-    }
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:12px;
+  background-color: #ffffff;
+  margin: 40px;
+  color: #333;
+  line-height: 1.6;
+}
 
-    h1 {
-      font-weight: normal;
-      margin-bottom: 20px;
-    }
+h1 {
+  font-weight: normal;
+  margin-bottom: 20px;
+}
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 900px;
-      font-size: 10px;
-    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 900px;
+  font-size: 10px;
+}
 
-    thead th {
-      border-bottom: 2px solid #444;
-      padding: 8px 10px;
-      text-align: left;
-      font-weight: 600;
-      background-color: #f7f7f7;
-    }
+thead th {
+  border-bottom: 2px solid #444;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  background-color: #f7f7f7;
+}
 
-    tbody td {
-      border-bottom: 1px solid #ddd;
-      padding: 8px 10px;
-      vertical-align: top;
-    }
+tbody td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 10px;
+  vertical-align: top;
+}
 
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
+tbody tr:last-child td {
+  border-bottom: none;
+}
 
-    a {
-      color: #2c7fb8;
-      text-decoration: none;
-    }
+a {
+  color: #2c7fb8;
+  text-decoration: none;
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
+a:hover {
+  text-decoration: underline;
+}
 
-    /* Optional: subtle row hover like RStudio viewer */
-    tbody tr:hover {
-      background-color: #f9f9f9;
-    }
+/* Optional: subtle row hover like RStudio viewer */
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
 
-    /* Keep it simple on mobile (no card conversion) */
-    @media (max-width: 600px) {
-      body {
-        margin: 20px;
-      }
-
-      table {
-        font-size: 10px;
-      }
-    }
 /* Reset style for lists INSIDE your content so they don't look like links */
 .content-section ul, .content-section li {
   color: black;
@@ -83,6 +72,7 @@ body {
   overflow-y: auto;
   font-family: Arial, sans-serif;
 }
+
 /* Sidebar styles */
 .sidebar-nav {
   list-style: none;
@@ -169,4 +159,97 @@ body {
 /* Smooth scrolling for the whole page */
 html {
   scroll-behavior: smooth;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN - FIX FOR MOBILE */
+/* ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    margin: 15px;
+  }
+  
+  /* Make sidebar NOT fixed on mobile - it becomes a normal block at the bottom */
+  #sidebar {
+    position: static;
+    width: 100%;
+    max-height: none;
+    margin-top: 30px;
+    right: auto;
+    top: auto;
+    box-sizing: border-box;
+  }
+  
+  /* Main content takes full width on mobile */
+  .page {
+    margin-right: 0;
+    padding: 0;
+  }
+  
+  /* Make tables scrollable horizontally on mobile */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  
+  /* Slightly larger text for better readability on mobile */
+  body {
+    font-size: 14px;
+  }
+  
+  table, tbody, thead {
+    font-size: 12px;
+  }
+  
+  /* Reduce padding in table cells for mobile */
+  thead th, tbody td {
+    padding: 6px 8px;
+  }
+}
+
+/* Even smaller screens (phones) */
+@media (max-width: 480px) {
+  body {
+    margin: 10px;
+  }
+  
+  .sidebar-h1-toggle {
+    padding: 8px 8px; /* Slightly larger touch target */
+  }
+  
+  .sidebar-link-sub {
+    padding: 6px 8px; /* Larger touch target for mobile */
+  }
+  
+  /* Optional: Add a toggle button to show/hide sidebar on mobile */
+  /* Uncomment this section if you want a collapsible sidebar instead */
+  /*
+  #sidebar {
+    display: none;
+  }
+  
+  #sidebar.visible {
+    display: block;
+  }
+  
+  .mobile-sidebar-toggle {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  */
 }

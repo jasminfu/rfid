@@ -1,0 +1,172 @@
+
+body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:12px;
+      background-color: #ffffff;
+      margin: 40px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      font-size: 10px;
+    }
+
+    thead th {
+      border-bottom: 2px solid #444;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+      background-color: #f7f7f7;
+    }
+
+    tbody td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    a {
+      color: #2c7fb8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Optional: subtle row hover like RStudio viewer */
+    tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    /* Keep it simple on mobile (no card conversion) */
+    @media (max-width: 600px) {
+      body {
+        margin: 20px;
+      }
+
+      table {
+        font-size: 10px;
+      }
+    }
+/* Reset style for lists INSIDE your content so they don't look like links */
+.content-section ul, .content-section li {
+  color: black;
+  list-style: disc;
+  cursor: default;
+  padding-left: 20px;
+}
+
+#sidebar {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 250px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+/* Sidebar styles */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* H1 items */
+.sidebar-h1-item {
+  margin: 8px 0;
+  list-style: none;
+}
+
+.sidebar-h1-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.sidebar-h1-toggle:hover {
+  background: #f0f0f0;
+}
+
+.toggle-icon {
+  font-size: 10px;
+  margin-right: 8px;
+  display: inline-block;
+  width: 12px;
+}
+
+.sidebar-link-h1 {
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  flex: 1;
+}
+
+.sidebar-link-h1:hover {
+  color: #007bff;
+}
+
+/* Submenu styles */
+.sidebar-submenu {
+  list-style: none;
+  padding-left: 0;
+  margin: 5px 0 5px 15px;
+}
+
+.sidebar-link-sub {
+  text-decoration: none;
+  color: #555;
+  display: block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.sidebar-link-sub:hover {
+  background: #f5f5f5;
+  color: #007bff;
+}
+
+/* Active section highlighting */
+.sidebar-link.active-section {
+  color: #007bff;
+  font-weight: bold;
+  background: #e7f3ff;
+}
+
+/* Main content area - leave space for sidebar */
+.page {
+  margin-right: 290px;
+  padding: 20px;
+}
+
+.page-link {
+  cursor:pointer;
+}
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}

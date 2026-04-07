@@ -154,6 +154,7 @@ tbody tr:hover {
 
 .page-link {
   cursor:pointer;
+  color: green;
 }
 
 /* Smooth scrolling for the whole page */

@@ -484,6 +484,21 @@ float endSleepTime = 5.5;      // 5:30 AM, MODIFY TO CHANGE WAKE TIME</code></pr
   <li><b>The code failed to upload!</b><ul>
     <li>Make sure you chose the correct board in the dropdown menu. It should say 'Adafruit Feather RP2040 Adalogger', and it should be in <b>bold</b>.</li>
     <li>Press the reset button or force <a href="https://learn.adafruit.com/adafruit-feather-rp2040-with-usb-type-a-host/factory-reset-2">bootloader mode</a>. (This may also fix serial port errors)</li></ul></li>
+  <li><b>The rainbow light (neopixel) is still on!</b><ul>
+    <li>Download the Adafruit Neopixel library in your library manager of the Arduino IDE.</li>
+    <li>Upload the following code to your RP2040 Adalogger:<br>
+    <pre><code>#include <Adafruit_NeoPixel.h>
+
+Adafruit_NeoPixel pixels(1, 17, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  pixels.begin();
+  pixels.clear();
+  pixels.show();
+}
+
+void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload the original code.</li>
+  </ul></li>
 </ul>
 <p>If you have any other issues, internet resources such as the <a href="https://forums.adafruit.com/">Adafruit Forum</a> and <a href="https://forum.arduino.cc/">Arduino Forum</a> are great places to get answers.</p>
 <h1>Testing your device</h1>

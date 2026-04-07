@@ -141,7 +141,7 @@ void updateDisplay() {
       timeString = String(timeBuffer);
     }
     display.println(timeString);
-    display.println("Feeder ID: " + String(feederID));
+    display.println("Feeder ID: " + String(deviceID));
   }
   display.display();
 }
@@ -265,8 +265,8 @@ void setup() {
   }
 
   // Construct file names based on feeder ID
-  sprintf(housekeeping, "/%s_house.csv", feederID);
-  sprintf(rfidlog, "/%s_rfid.csv", feederID);
+  sprintf(housekeeping, "/%s_house.csv", deviceID);
+  sprintf(rfidlog, "/%s_rfid.csv", deviceID);
 
   // Open housekeeping files
   if (sdInit) {
@@ -364,7 +364,7 @@ void loop() {
       if (sdInit) {
         FsFile rlFile = SD.open(rfidlog, FILE_WRITE);
         if (rlFile) {
-          rlFile.println(String(feederID) + "," + timeString + "," + tag);
+          rlFile.println(String(deviceID) + "," + timeString + "," + tag);
           rlFile.close();
         }
       }

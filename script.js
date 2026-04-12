@@ -106,19 +106,33 @@ function generateSidebar() {
   });
 }
 
-function openPage(page) {
-  // Hide all pages and remove active class
-  const pages = document.querySelectorAll('.page');
-  pages.forEach(p => {
-    p.style.display = 'none';
-    p.classList.remove('active');
-  });
+async function openPage(page) {
+  const container = document.getElementById('content-area');
   
-  // Show selected page and add active class
-  const activePage = document.getElementById(page);
-  activePage.style.display = 'block';
-  activePage.classList.add('active');
+  // Remove any existing pages
+  const existingPages = document.querySelectorAll('.page');
+  existingPages.forEach(p => p.remove());
   
-  // Refresh sidebar for the new active page
-  generateSidebar();
+  try {
+    // Load the page from external file
+    const response = await fetch(`pages/${page}.html`);
+    if (!response.ok) throw new Error('Page not found');
+    const html = await response.text();
+    
+    // Create new page div
+    const newPage = document.createElement('div');
+    newPage.id = page;
+    newPage.className = 'page active';  // Directly set as active
+    newPage.style.display = 'block';
+    newPage.innerHTML = html;
+    
+    // Add to container
+    container.appendChild(newPage);
+    
+    // Generate sidebar from loaded content
+    generateSidebar();
+    
+  } catch (error) {
+    container.innerHTML = `<div class="error">Error loading ${page}: ${error.message}</div>`;
+  }
 }

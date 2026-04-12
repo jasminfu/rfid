@@ -136,3 +136,7 @@ async function openPage(page) {
     container.innerHTML = `<div class="error">Error loading ${page}: ${error.message}</div>`;
   }
 }
+
+window.onload = function() {
+  openPage('home'); // Load first page by default
+};

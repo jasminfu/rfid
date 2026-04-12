@@ -490,7 +490,7 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <li>Test connections with a continuity tester.</li>
 </ol>
 <p>Below is a summary of all the connections you will make in this step:</p>
-<center><img src="mapping.png" style="width:560px; height: auto;"></center>
+<center><img src="images/mapping.png" style="width:560px; height: auto;"></center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=2690&end=3447" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <h3>Secure your PCB onto the tripler</h3>
 <ol><li>Plug in WL-134 onto your proto-board/PCB.</li>
@@ -499,13 +499,13 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=3448" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <h2>Antenna and attachment to project box</h2>
 <h3>Solder wires of male JST connector onto female end of aviation connector</h3>
-<img src="final_jst_aviation.jpg" width="200">
+<img src="images/final_jst_aviation.jpg" width="200">
 <p><a href="https://www.youtube.com/watch?v=vxILc7VsF4s&pp=ygUZc29sZGVyIGF2aWF0aW9uIGNvbm5lY3Rvcg%3D%3D">This video</a> provides a demonstration on how to solder wires into aviation connector cups.</p>
 <ol><li>If not tinned already, tin the ends of the stranded wires on the male end of the JST connector.</li>
 <li>Tin the connector cups on the aviation connector.</li>
 <li>With a soldering iron, poke the ends of the JST connector into the aviation connector cups.</li></ol>
 <h3>Solder factory antenna onto wires</h3>
-<img src="antenna_wire.jpg" width="200">
+<img src="images/antenna_wire.jpg" width="200">
 <p>Parallel wires are recommended for neatness but here I am using 22AWG silicone stranded wire (Do not use solid core wire).</p>
 <ol><li>Strip a little bit of insulation from your 2 wires</li>
 <li>Stick one end of your antenna into a wire. Stick another end into the other wire.</li>
@@ -523,45 +523,45 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
   <li>
     Position your wire cutters close to the fuse, leaving approximately 1 inch of space from the fuse.
   </li>
-  <img src="cut_fuse.jpg" width="200">
+  <img src="images/cut_fuse.jpg" width="200">
   <li>Cut the inline fuse cable.</li>
   <li>Uncap the fuse.</li>
   <li>Insert a 5A blade fuse into the slot.</li>
-  <img src="blade_fuse.jpg" width="200">
+  <img src="images/blade_fuse.jpg" width="200">
   <li>Recap the fuse.</li>
   </ol>
 <h3>Crimp the spade connectors</h3>
 <ol>
   <li>Line up the female DC connector, cable with fuse and a spade connector to the positive end of the battery. Make the fuse lie flat on the battery when positioning your spade connector. The shorter end of your fuse cable should be closest to the battery.</li>
-  <img src="batt_lineup.jpg" width="200">
+  <img src="images/batt_lineup.jpg" width="200">
   <li>Strip a bit of insulation from the short end of the fuse cable.</li>
   <li>Crimp the spade connector onto the short end of the fuse cable. (<a href="https://www.youtube.com/watch?v=m-1DS5iTLRc">Video</a> on how to crimp spade connectors)</li>
-  <img src="crimp_spade.jpg" width="200">
+  <img src="images/crimp_spade.jpg" width="200">
   <li>Strip a bit of insulation from the ground wire of the female DC connector.</li>
   <li>Crimp a spade connector onto the ground wire of the female DC connector.</li>
   </ol>
 <h3>Connect fuse wire to + wire of DC connector</h3>
 <ol>
   <li>Trim the fuse wire and red (positive) wire of the female DC connector so that they are collectively the same length as the ground wire. Account for the length of your WAGO connector if using.</li>
-  <img src="wago_line.jpg" width="200">
+  <img src="images/wago_line.jpg" width="200">
   <li>Connect the long end of the fuse cable to the positive wire of the female DC connector. You may use a <a href="https://www.acehardware.com/departments/lighting-and-electrical/boxes-fittings-and-conduit/cable-connectors/3022437">WAGO connector</a> (as pictured) or solder the wires together (<a href="https://www.youtube.com/watch?v=NSqPHQ1zQco">instructions here</a>). Use electrical tape or heat shrink tubing at the connection if soldering.</li>
 </ol>
 <h3>Connect the battery to the board</h3>
 
 <ol>
   <li>Plug in the spade connector with the red wire to the positive end of the 12V battery.</li>
-  <li>Plug in the spade connector with the black wire to the negative end of the 12V battery.</li><img src="batt_final.jpg" width="200">
-  <li>Plug in the female end of the DC connector to the male end of the DC connector of your Adafruit Tripler board.</li><img src="dc_mf.jpg" width="200">
+  <li>Plug in the spade connector with the black wire to the negative end of the 12V battery.</li><img src="images/batt_final.jpg" width="200">
+  <li>Plug in the female end of the DC connector to the male end of the DC connector of your Adafruit Tripler board.</li><img src="images/dc_mf.jpg" width="200">
   </ol>
   
-  <p>At this point, you are ready to test your all of your components. If you are uploading code onto your device, <b>	&#65039; please unplug the battery before you plug your device into the computer!</b></p>
+  <p>At this point, you are ready to test your all of your components. If you are uploading code onto your device, <b>	&#9888; please unplug the battery before you plug your device into the computer!</b></p>
 
 <h1>Testing your device</h1>
 <p>After you have done all of the steps above, you are ready to test the device.</p>
 <h2>Power the tripler</h2>
-<p><b>If you have just flashed code, unplug the Adalogger from your computer.</b> Plugging in your device to the 12V battery and your computer simultaneously could damage your computer.</p>
+<p>&#9888; <b>If you have just flashed code, unplug the Adalogger from your computer.</b> Plugging in your device to the 12V battery and your computer simultaneously could damage your computer.</p>
 <p>We recommend inserting a dust plug with a sign on your Adalogger for this reason.</p>
-<img src="dust_plug.jpg" width="200">
+<img src="images/dust_plug.jpg" width="200">
 <p>Plug the male DC connector on your board into the female DC connector of the battery.</p>
 <p>If the device starts smoking or smelling funny, unplug the battery immediately and re-examine the connections on the board, preferably with a continuity tester.</p>
 <ul><li>Wires may not be soldered to the appropriate pins</li>
@@ -576,7 +576,6 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <li><b>Test the waking mechanism of the RTC.</b> Attempt to scan a PIT tag after the device has slept. The OLED monitor buttons and the WL-134 should be responsive.</li></ol>
 <h2>Troubleshoot any non-functional components</h2>
 <p>Before reading the sections below, verify that all of your pins are inserted properly into the female headers (no extra prongs on the PCB boards are sticking out).</p>
-<p><b><u>Potential Issues and Possible Solutions:</u></b></p>
 <h3>OLED is not turning on</h3>
 <ul><li>Check that your battery is charged.</li>
 <li>Check that the battery is connected well to Tripler board.</li>
@@ -588,7 +587,6 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <h3>RTC time is wrong</h3>
 <ul><li>Re-upload the code to the device via the Arduino IDE.</li></ul>
 <h3>Device isn't waking up</h3>
-<ul><li>Ensure you connected the SQW pin on the RTC to pin 25.</li>
 <li>Reflow or reinforce the soldered bridge on pin 25 and the wire to the SQW pin</li></ul>
 <h3>Device can't detect the SD card</h3>
 <ul><li>Ensure your SD card is fully plugged into the card slot and in the correct direction.</li>

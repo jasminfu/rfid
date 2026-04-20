@@ -15,7 +15,7 @@
       <h3>Do I have the right PIT tags for this?</h3>
       <p>This project is for reading ISO FDX-B 134.2khZ PIT tags, the same kind of tags found in your household pets.</p> <p>If you are studying wild animals, you need to acquire these tags, acquire the relevant permits, and find a reliable and safe way to attach these tags to the animals. For example, presently, no bird leg bands with 134.2kHz PIT tags are readily available on the market, so you need to <a href="http://www.animalmigration.org/RFID/RFIDBands.htm">make your own</a>.</p>
       <h3>Is this the right frequency for me?</h3>
-      <p>PIT tags also come in 125kHz, with electrical components that are cheaper and easier to source because they are widely used by hobbyists. Using 125kHz RFID readers simplifies wiring for a DIY electronics project, because they have lower voltage requirements compared to 134.2kHz RFID readers. 125kHz tags and readers also have similar performance to those of 134.2kHz. If studying birds, leg bands with 125kHz PIT tags <i>are</i> available for sale by <a href="https://eccel.co.uk/product-category/avian-products/bird-tags/">Eccel Technologies</a>.</p>
+      <p>PIT tags also come in 125kHz, with electrical components that are cheaper and easier to source because they are widely used by hobbyists. Using 125kHz RFID readers that require 3.3V (instead of 5V) simplifies wiring for a DIY electronics project. 125kHz tags and readers also have similar performance to those of 134.2kHz. If studying birds, leg bands with 125kHz PIT tags <i>are</i> available for sale by <a href="https://eccel.co.uk/product-category/avian-products/bird-tags/">Eccel Technologies</a>.</p>
       
     
     <h1>Electronic Parts List</h1>
@@ -144,12 +144,12 @@
             1
           </td>
           <td data-label="Alternatives">
-            Lots of difference places sell lead-free solder. You may also use solder with lead, but beware that the lead residue and fumes are a health hazard.
+            Lots of places sell lead-free solder. You may also use solder with lead, but beware that the lead residue and fumes are a health hazard.
           </td>
         </tr>
         <tr>
           <td data-label="Part Name">22 Gauge Flexible 2 Conductor Parallel Silicone Wire Spool</td>
-          <td data-label="Function">Protects antenna wires</td>
+          <td data-label="Function">Extends antenna wires</td>
           <td data-label="Purchase Link">
             <a href="https://bntechgo.com/bntechgo-22-gauge-25ft-flexible-2-conductor-parallel-silicone-wire-spool-red-black-highly-resistant-to-200-c-600v-for-single-color-led-strip-extension-lead-wire-stranded-tinned-copper-wire/" target="_blank">BNTechgo</a><br><a href="https://www.newegg.com/p/0PY-012A-000F5?item=9SIB38FKCG3459" target="_blank">Newegg</a></td>
 <td data-label="Quantity per feeder">
@@ -289,10 +289,10 @@
           </td>
         </tr>
         <tr>
-          <td data-label="Part Name">Braided Sleeving Heat Shrinkable Fabric 2:1 Ratio- Abrasion Protection Flexibility Wiring Harness Cable Sheath (3/8")</td>
+          <td data-label="Part Name">1/4 inch 2:1 Heat Shrinkable Braided Sleeving Heat Shrink Sleeve Abrasion Protection Flexibility Wiring Harness Cable Sheath</td>
           <td data-label="Function">Protects antenna wires from the elements</td>
           <td data-label="Purchase Link">
-            <a href="https://www.amazon.com/dp/B0B2WFDFJ5" target="_blank">Amazon</a><br><a href="https://www.walmart.com/ip/Heat-Shrinkable-Braided-Sleeving-2-1-Ratio-Abrasion-Protection-Flexibility-Wiring-Harness-Cable-Sheath/1005355492" target="_blank">Walmart</a></td>
+            <a href="https://www.amazon.com/20-inch-Shrinkable-Protection-Flexibility/dp/B0F1FV291T/" target="_blank">Amazon</a></td>
 <td data-label="Quantity per feeder">
             Depends on antenna wire length
           </td>
@@ -323,6 +323,7 @@
   <li><b>USB-C Cable</b> with data transfer that can plug into your device</li>
   <li><b>Continuity Tester</b> to troubleshoot soldered connections</li>
   <li><b>Heat gun</b> to shrink cable sheath</li>
+  <li><b>Tiny Phillips Screwdriver</b> to unscrew aviation connector</li>
 </ul>
 <h1>Code for RP2040 Data Logger</h1>
 <p>We will upload a code to the RP2040 Adalogger to tell it to log RFID data.</p>
@@ -498,7 +499,9 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 </ol>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=3448" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <h2>Antenna and attachment to project box</h2>
-<h3>Solder wires of male JST connector onto female end of aviation connector</h3>
+<h3>Solder wires of male JST connector onto male end of aviation connector</h3>
+<p>The aviation connector provides a watertight connection from the inside to the outside of your electrical/project box.</p>
+<p>The pictured connector will be on the inside of your project box.</p>
 <img src="images/final_jst_aviation.jpg" width="200">
 <p><a href="https://www.youtube.com/watch?v=vxILc7VsF4s&pp=ygUZc29sZGVyIGF2aWF0aW9uIGNvbm5lY3Rvcg%3D%3D">This video</a> provides a demonstration on how to solder wires into aviation connector cups.</p>
 <ol><li>If not tinned already, tin the ends of the stranded wires on the male end of the JST connector.</li>
@@ -512,11 +515,16 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <li>Solder to form a connection between your antenna wires and the stranded wire.</li>
 <li>Wrap the point of connection the antenna wires and stranded wires with electrical tape or shrink tubing to protect it.</li></ol>
 <h3>Solder ends of the antenna wires into cannon plug of the aviation connector</h3>
-<ol><li>Strip a little bit of insulation from the 2 stranded wires that are attached to the antenna.</li>
-<li>Cut the cable sheath to the length of the 2 stranded wires.</li>
-<li>Use a heat gun to shrink the sheath to wrap around the 2 stranded wires.</li>
-<li>Wrap the point of connection the antenna wires and stranded wires with electrical tape to protect it.</li></ol>
-<h3>Plug in male JST connector to female JST connector on the WL-134</h3>
+<p>This cable will be on the outside of your project box.</p>
+<img src="images/antenna_cable.jpg" width="200">
+<ol><li>Insert the part of your antenna wires that will be exposed to the outside into the braided cable sheath (or heat shrink tubing). Use a heat gun to shrink the tubing.</li>
+<li>Unscrew the cannon plug of the aviation connector from the metal body. Then thread your antenna cable through the metal body (you may need to unscrew the bracket to get the cable to fit).</li>
+<img src="images/metal_body.jpg" width="200">
+<li>Solder the antenna wires onto the metal ends of the cannon plug.</li>
+<img src="images/cannon_solder.jpg" width="200">
+<li>Screw the cannon plug back together. Insert the male end of the aviation connector into the female end.</li></ol>
+<h3>Plug in male JST connector of the antenna to female JST connector on the WL-134</h3>
+
 <h2>The battery</h2>
 <h3>Prepare the fuse</h3>
 <ol>

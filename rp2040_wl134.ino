@@ -56,7 +56,7 @@ const char* checkTags[] = {
 };
 
 // File name variables
-const char* deviceID = "01";  // MODIFY THIS FOR EACH DEVICE
+const char* deviceID = "00";  // MODIFY THIS FOR EACH DEVICE
 char housekeeping[32];
 char rfidlog[32];
 
@@ -68,6 +68,7 @@ unsigned long lastCheck = 0;
 const unsigned long checkInterval = 60000;
 const unsigned long TIMEOUT_DURATION_MS = 21000;
 unsigned long lastMotionTime;
+String lastTag = "NONE";
 
 // Default sleep times. startSleepTime should be bigger than endSleepTime
 float startSleepTime = 21.75;  // 9:45 PM, MODIFY TO CHANGE SLEEP TIME
@@ -97,14 +98,19 @@ void updateDisplay() {
   display.oled_command(SH110X_DISPLAYON);
   display.setCursor(0, 0);
   if (currentPage == 1) {
+    display.println("Tag: " + lastTag);
     String sdSpaceMsg;
     if (sdInit) {
       uint32_t freeClusters = SD.vol()->freeClusterCount();
       uint32_t totalClusters = SD.vol()->clusterCount();
-      float percentUsed = ((float)(totalClusters - freeClusters) * 100.0) / totalClusters;
-      sdSpaceMsg = "SD: " + String(percentUsed, 2) + "%";
-    } else {
-      sdSpaceMsg = "SD: ERROR";
+
+      // freeClusterCount() returns 0 on error
+      if (freeClusters == 0 || totalClusters == 0) {
+        sdSpaceMsg = "SD: ERROR";
+      } else {
+        float percentUsed = ((float)(totalClusters - freeClusters) * 100.0) / totalClusters;
+        sdSpaceMsg = "SD: " + String(percentUsed, 2) + "%";
+      }
     }
     display.println(sdSpaceMsg);
     String logStatus = "";
@@ -123,16 +129,8 @@ void updateDisplay() {
       }
     }
     display.println(logStatus);
-    String rtcStatus = "";
-    Wire.beginTransmission(0x68);
-    if (Wire.endTransmission() == 0) {
-      rtcStatus = "RTC: OK";
-    } else {
-      rtcStatus = "RTC: ERROR";
-    }
-    display.println(rtcStatus);
   } else {
-    String timeString = "ERROR";
+    String timeString = "RTC: ERROR";
     if (rtcInit) {
       DateTime now = rtc.now();
       char timeBuffer[20];
@@ -141,7 +139,7 @@ void updateDisplay() {
       timeString = String(timeBuffer);
     }
     display.println(timeString);
-    display.println("Feeder ID: " + String(deviceID));
+    display.println("ID: " + String(deviceID));
   }
   display.display();
 }
@@ -264,7 +262,7 @@ void setup() {
     Serial.println("SD FAIL");
   }
 
-  // Construct file names based on feeder ID
+  // Construct file names based on device ID
   sprintf(housekeeping, "/%s_house.csv", deviceID);
   sprintf(rfidlog, "/%s_rfid.csv", deviceID);
 
@@ -359,6 +357,7 @@ void loop() {
         tag += (char)buffer[i];
       }
       lastMotionTime = millis();  // Keeps device from sleeping when there is RFID activity
+      lastTag = tag;
       String timeString = rtcRead();
       Serial.println(tag + " @ " + timeString);
       if (sdInit) {
@@ -369,17 +368,20 @@ void loop() {
         }
       }
 
+      if (oledPowerState) {
+        updateDisplay();
+      }
+
       // Check if it is a designated check tag and turn on OLED if yes
       for (auto t : checkTags) {
         if (tag.indexOf(t) != -1) {
           if (!oledPowerState) {
-            oledPowerState = true;
-            oledOnTime = millis();
-            updateDisplay();
+            btnAPressed = true;
           }
           break;
         }
       }
+
       buffer_index = 0;
 
       while (Serial1.available() > 0) {

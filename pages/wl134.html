@@ -45,7 +45,7 @@
         </tr>
 
         <tr>
-          <td data-label="Part Name">WL134 (RFID Module)</td>
+          <td data-label="Part Name">WL134 (RFID Module) with 3V3Tx Pin</td>
           <td data-label="Function">Reads 134.2khZ tags</td>
           <td data-label="Purchase Link">
             <a href="https://a.co/d/06jp2lGu
@@ -54,6 +54,9 @@
           </td>
           <td data-label="Quantity per feeder">
             1
+          </td>
+          <td data-label="Alternatives">
+            Many variations of the WL-134 are available. If you find that your WL-134 does not have a 3v3Tx pin, you are recommended to integrate a logic level converter to your board. You may also use 1K and 2K resistors as a work around. See instructions for further details.
           </td>
         </tr>
 
@@ -486,13 +489,16 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <li>5V pin of your RFID buck (MPM3610) to WL-134's + (positive) pin</li>
 <li>GND pin of your RFID buck (MPM3610) to WL-134's - (negative) pin</li>
 <li>EN pin of your RFID buck (MPM3610) to pin 12 of RP2040 Adalogger</li>
-<li>3v3Tx pin of your WL-134 to RX pin of RP2040 Adalogger (<u>NOT</u> 5V TX pin)</li></ul></li><li>After all wires are set up, double check your connections.</li>
+<li>3v3Tx pin of your WL-134 to RX pin of RP2040 Adalogger (<u>NOT</u> 5V TX pin. If you do not have a 3v3Tx pin, you will need to use 1K and 2K resistors as a work around)</li></ul></li><li>After all wires are set up, double check your connections.</li>
 <li>Solder connections between wires, boards and header pins.</li>
 <li>Snip off excess wire if desired</li>
 <li>Test connections with a continuity tester.</li>
 </ol>
 <p>Below is a summary of all the connections you will make in this step:</p>
 <center><img src="images/mapping.png" style="width:560px; height: auto;"></center>
+
+<p>If there is no 3v3Tx pin on your WL-134:</p>
+<center><img src="images/mapping_5v.png" style="width:560px; height: auto;"></center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4RbMXdVX1jI?si=PleWPnGbkQe8EiA4&amp;start=2690&end=3447" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <h3>Secure your PCB onto the tripler</h3>
 <ol><li>Plug in WL-134 onto your proto-board/PCB.</li>

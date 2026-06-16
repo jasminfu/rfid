@@ -382,7 +382,12 @@ float endSleepTime = 5.5;      // 5:30 AM, MODIFY TO CHANGE WAKE TIME</code></pr
 <p>Here are the most common problems I encountered as a newbie while working with the RP2040 code.</p>
 <ul>
   <li><b>Can't see the board on my dropdown!</b>
-  <ul><li>Try another cable. Make sure it is capable of data transfer.</li><li>Try another USB port</li><li>Force it into <a href="https://learn.adafruit.com/adafruit-feather-rp2040-with-usb-type-a-host/factory-reset-2">bootloader mode</a>, or press the 'RESET' button. Something like 'RPI-RP2' should appear in the dropdown menu. Choose that and try to upload again.</li></ul>
+  <ul><li>Try another cable. Make sure it is capable of data transfer.</li><li>Try another USB port</li><li>Force it into <a href="https://learn.adafruit.com/adafruit-feather-rp2040-with-usb-type-a-host/factory-reset-2">bootloader mode</a>, or press the 'RESET' button. Something like 'RPI-RP2' should appear in the dropdown menu. Choose that and try to upload again.</li>
+  <li>If you still have issues with uploading code, please see the <a href="https://support.arduino.cc/hc/en-us/articles/4412955149586-If-your-board-is-not-detected-by-Arduino-IDE">Arduino Support</a> page</li></ul>
+  </li>
+  <li><b>My code failed to upload!</b>
+  <ul>
+  <li>Please see the corresponding <a href="https://support.arduino.cc/hc/en-us/articles/4403365313810-If-your-sketch-doesn-t-upload">Arduino Support</a> page</li></ul>
   </li>
   <li><b>There's errors in the code!</b><ul><li>Make sure you have downloaded all the required libraries</li>
   <li>If you added or deleted things from the code, start over from the original code. Make sure that your edits did not delete or add an extra semicolon, parenthesis, curly bracket or comma by accident.</li>
@@ -406,7 +411,9 @@ void setup() {
 void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload the original code.</li>
   </ul></li>
 </ul>
-<p>If you have any other issues, internet resources such as the <a href="https://forums.adafruit.com/">Adafruit Forum</a> and <a href="https://forum.arduino.cc/">Arduino Forum</a> are great places to get answers.</p>
+<p>If you are using the Arduino IDE for the first time and are having issues, the <a href="https://support.arduino.cc/hc/en-us">Arduino Support</a> page is a great resource for beginners that are troubleshooting their Arduino projects.</p>
+<p>AI platforms such as DeepSeek, Claude and Gemini are also fantastic tools for pinpointing and resolving software errors, and even wiring issues if you can provide exact descriptions, log outputs and outcomes.</p>
+<p>If you have any other issues that the Arduino Support page and AI is not able to resolve, internet resources such as the <a href="https://forums.adafruit.com/">Adafruit Forum</a> and <a href="https://forum.arduino.cc/">Arduino Forum</a> are great places to get answers.</p>
 <h1>Electronics Assembly</h1>
 <p>If you have never soldered before, we recommend watching some <a href="https://www.youtube.com/watch?v=DJH7VLGJ4fs">YouTube videos</a> to familiarize yourself with the process. The instructions for board assembly also progress from easy to moderately hard, and provide a great introduction to people who have never worked with electronic components before.</p>
 <p>Below details the steps to assemble the electronics. Though the videos below look the same, there are unique start and end time stamps for each player, so you can play the content for the corresponding section.</p>
@@ -600,7 +607,10 @@ void loop() {}</code></pre></li><li>Verify the light is off.</li><li>Re-upload t
 <li>Check placement of wire and continuity between RP2040's RX and WL-134's 3v3TX pin.</li>
 <li>Check placement of wire and continuity between RP2040's pin 12 and WL-134's + pin.</li></ul>
 <h3>RTC time is wrong</h3>
-<ul><li>Re-upload the code to the device via the Arduino IDE.</li></ul>
+<ul>
+  <li>Replace your RTC battery</li>
+  <li>Re-upload the code to the device via the Arduino IDE.</li>
+  <li>If still failing, replace your RTC.</li></ul>
 <h3>Device isn't waking up</h3>
 <li>Reflow or reinforce the soldered bridge on pin 25 and the wire to the SQW pin</li></ul>
 <h3>Device can't detect the SD card</h3>

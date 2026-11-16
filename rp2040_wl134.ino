@@ -56,7 +56,7 @@ const char* checkTags[] = {
 };
 
 // File name variables
-const char* deviceID = "00";  // MODIFY THIS FOR EACH DEVICE
+const char* deviceID = "03";  // MODIFY THIS FOR EACH DEVICE
 char housekeeping[32];
 char rfidlog[32];
 
@@ -234,6 +234,113 @@ void housekeepingWrite(String data) {
   }
 }
 
+void readTags() {
+  // Settings
+  static const int TAG_LENGTH = 15;
+  static const char* REQUIRED_SUFFIX = "D300";
+  static const size_t FRAME_MAX = 40;
+  static const unsigned long FRAME_TIMEOUT_MS = 250;
+  static const char STX_CHAR = 0x02;
+  static const char ETX_CHAR = 0x03;
+
+  // State kept between calls
+  static char frame[FRAME_MAX];
+  static size_t frameLen = 0;
+  static bool inFrame = false;
+  static unsigned long frameStart = 0;
+  static unsigned long rejectedCount = 0;
+
+  // Abandon a half-received frame that never finished
+  if (inFrame && (millis() - frameStart > FRAME_TIMEOUT_MS)) {
+    inFrame = false;
+    frameLen = 0;
+    rejectedCount++;
+  }
+
+  int bytesHandled = 0;
+  while (Serial1.available() > 0 && bytesHandled < 64) {
+    int c = Serial1.read();
+    bytesHandled++;
+    if (c < 0) break;
+
+    // A new STX always restarts the frame
+    if (c == STX_CHAR) {
+      inFrame = true;
+      frameLen = 0;
+      frameStart = millis();
+      continue;
+    }
+
+    if (!inFrame) continue;  // Ignore bytes outside a frame
+
+    // Not the end of the frame yet: store the byte
+    if (c != ETX_CHAR) {
+      if (frameLen < FRAME_MAX) {
+        frame[frameLen++] = (char)c;
+      } else {  // Too long to be a real frame
+        inFrame = false;
+        frameLen = 0;
+        rejectedCount++;
+      }
+      continue;
+    }
+
+    // ETX received: validate the frame
+    size_t len = frameLen;
+    inFrame = false;
+    frameLen = 0;
+
+    while (len > 0 && (frame[len - 1] == '\r' || frame[len - 1] == '\n')) len--;
+
+    bool valid = (len >= (size_t)TAG_LENGTH);
+    String tag = "";
+    if (valid) {
+      for (int i = 0; i < TAG_LENGTH; i++) {
+        char ch = frame[i];
+        if (!((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F'))) {
+          valid = false;
+          break;
+        }
+        tag += ch;
+      }
+    }
+    if (valid && !tag.endsWith(REQUIRED_SUFFIX)) valid = false;
+
+    if (!valid) {
+      rejectedCount++;
+      Serial.println("Rejected noisy frame (total rejected: " + String(rejectedCount) + ")");
+      return;
+    }
+
+    // Valid tag: log it
+    lastMotionTime = millis();  // Keeps device from sleeping when there is RFID activity
+    lastTag = tag;
+    String timeString = rtcRead();
+    Serial.println(tag + " @ " + timeString);
+    if (sdInit) {
+      FsFile rlFile = SD.open(rfidlog, FILE_WRITE);
+      if (rlFile) {
+        rlFile.println(String(deviceID) + "," + timeString + "," + tag);
+        rlFile.close();
+      }
+    }
+
+    if (oledPowerState) updateDisplay();
+
+    // Check tags turn on the OLED
+    for (auto t : checkTags) {
+      if (tag.indexOf(t) != -1) {
+        if (!oledPowerState) btnAPressed = true;
+        break;
+      }
+    }
+
+    // Discard anything queued up while we were writing to the SD card
+    while (Serial1.available() > 0) Serial1.read();
+    return;
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   // Give user 5 seconds to open serial monitor if they want to see setup
@@ -331,66 +438,6 @@ void setup() {
 }
 
 void loop() {
-  // Read RFID tag
-  static uint8_t buffer[31];    // Local buffer
-  static int buffer_index = 0;  // Local buffer index
-  if (Serial1.available() > 0) {
-    bool call_extract_tag = false;
-    int ssvalue = Serial1.read();
-    if (ssvalue == -1) return;  // No data was read
-    if (ssvalue == 2) {
-      if (buffer_index > 0) {
-        return;  // We already have data, ignore this second STX
-      }
-      buffer_index = 0;  // Start of data
-    } else if (ssvalue == 3)
-      call_extract_tag = true;  // End of data
-    if (buffer_index >= 31) {
-      Serial.println("Buffer overflow detected");
-      buffer_index = 0;
-      return;
-    }
-    buffer[buffer_index++] = ssvalue;
-    if (call_extract_tag && buffer_index > 2) {
-      String tag = "";
-      for (int i = 1; i <= 15; i++) {
-        tag += (char)buffer[i];
-      }
-      lastMotionTime = millis();  // Keeps device from sleeping when there is RFID activity
-      lastTag = tag;
-      String timeString = rtcRead();
-      Serial.println(tag + " @ " + timeString);
-      if (sdInit) {
-        FsFile rlFile = SD.open(rfidlog, FILE_WRITE);
-        if (rlFile) {
-          rlFile.println(String(deviceID) + "," + timeString + "," + tag);
-          rlFile.close();
-        }
-      }
-
-      if (oledPowerState) {
-        updateDisplay();
-      }
-
-      // Check if it is a designated check tag and turn on OLED if yes
-      for (auto t : checkTags) {
-        if (tag.indexOf(t) != -1) {
-          if (!oledPowerState) {
-            btnAPressed = true;
-          }
-          break;
-        }
-      }
-
-      buffer_index = 0;
-
-      while (Serial1.available() > 0) {
-        Serial1.read();  // Flush bytes
-      }
-      return;
-    }
-  }
-
   // Turn on OLED if button A is pressed
   if (btnAPressed) {
     btnAPressed = false;
@@ -477,4 +524,5 @@ void loop() {
       }
     }
   }
+  readTags();
 }
